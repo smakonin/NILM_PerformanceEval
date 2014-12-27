@@ -1,0 +1,761 @@
+
+
+Evaluate My PhD Thesis Research Load Disaggregation Algorithms -- Copyright (C) 2013-2014, by Stephen Makonin.
+
+Process commandline args...
+	test_id = ENEF
+	dataset = ./Datasets/AMPds_1min_A.csv
+	units = A
+	precision = 1.0
+	denoised = True
+	model_noise = False
+	folds = 10
+	max_states = 8
+	emissions_type = discrete
+	reverse = False
+	all_loads = False
+	loads = BME,CDE,CWE,DWE,FGE,FRE,GRE,HPE,OFE,TVE,WOE
+	thread_pool = 1
+	pmf_test = False
+	hmm_test = False
+	no_progress_bar = False
+	limit = 0
+	log_probs = False
+	plot_it = False
+	logdet = False
+Loading ground truth...
+	Loading file: ./Datasets/AMPds_1min_A.csv
+	Model whole-house meter noise = False
+	T = 524544 , M = 11 , N = 201
+	Load IDs: ['BME', 'CDE', 'CWE', 'DWE', 'FGE', 'FRE', 'GRE', 'HPE', 'OFE', 'TVE', 'WOE']
+Proceeding with 10-Fold Cross-Validation...
+
+
+************************ VALIDATION ROUND: 1 ************************
+Building priors and testing datasets...
+Creating PMFs and states...
+	Priors data size is 472086
+	Creating PMFs for: BME... CDE... CWE... DWE... FGE... FRE... GRE... HPE... OFE... TVE... WOE... 
+Finding load states...
+	Max partitions per load = 8
+	Partition PMF: BME , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  412896 |t|
+		S1:     1:  200, peak=    2,   59190 |t|
+	Partition PMF: CDE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  463460 |t|
+		S1:     1:    5, peak=    4,    3428 |t|
+		S2:     6:  200, peak=   39,    5198 |t|
+	Partition PMF: CWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  462437 |t|
+		S1:     1:    3, peak=    1,    8117 |t|
+		S2:     4:  200, peak=    5,    1532 |t|
+	Partition PMF: DWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  461715 |t|
+		S1:     1:    2, peak=    1,    1917 |t|
+		S2:     3:  200, peak=    6,    8454 |t|
+	Partition PMF: FGE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  299700 |t|
+		S1:     1:    1, peak=    1,  170421 |t|
+		S2:     2:  200, peak=    3,    1965 |t|
+	Partition PMF: FRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,     610 |t|
+		S1:     1:    2, peak=    1,  468724 |t|
+		S2:     3:  200, peak=    4,    2752 |t|
+	Partition PMF: GRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  471782 |t|
+		S1:     1:  200, peak=    1,     304 |t|
+	Partition PMF: HPE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  433457 |t|
+		S1:     1:   16, peak=   15,   35882 |t|
+		S2:    17:  200, peak=   20,    2747 |t|
+	Partition PMF: OFE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  452905 |t|
+		S1:     1:  200, peak=    1,   19181 |t|
+	Partition PMF: TVE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  429569 |t|
+		S1:     1:  200, peak=    1,   42517 |t|
+	Partition PMF: WOE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  470504 |t|
+		S1:     1:    2, peak=    1,     775 |t|
+		S2:     3:   22, peak=   22,     231 |t|
+		S3:    23:   25, peak=   24,     244 |t|
+		S4:    26:  200, peak=   30,     332 |t|
+	Km = [2, 3, 3, 3, 3, 3, 2, 3, 2, 2, 5] , K = 58320 super-states
+	Ybounds = [[0, 1, 201], [0, 1, 6, 201], [0, 1, 4, 201], [0, 1, 3, 201], [0, 1, 2, 201], [0, 1, 3, 201], [0, 1, 201], [0, 1, 17, 201], [0, 1, 201], [0, 1, 201], [0, 1, 3, 23, 26, 201]]
+	Ypeaks = [[0, 2], [0, 4, 39], [0, 1, 5], [0, 1, 6], [0, 1, 3], [0, 1, 4], [0, 1], [0, 15, 20], [0, 1], [0, 1], [0, 1, 22, 24, 30]]
+Creating SS-HMM...
+	Number of super-states: 58320 (a sum of 31 states) for  11 loads.
+	Normalize matrices: P0[], A[][], B[][]
+	Sparsity Metrics:
+		A[][]: 100.0 % sparse ( size = 3401222400 , non-zero = 2516 , empty rows = 57852 )
+		B[][]: 99.49 % sparse ( size = 11722320 , non-zero = 59203 , empty rows = 57852 )
+	Space Optimization - Matrix Compression:
+		A[][]: Compress down to 100.0 % (size 255280 from 27209779200 Bytes)
+		B[][]: Compress down to 99.25 % (size 707708 from 93778560 Bytes)
+Testing Load Disagg...
+	Testing data size is 52454
+	Completed  1/10: [=                   ], Disagg rate:     0.012082 sec/sample 	Completed  1/10: [==                  ], Disagg rate:     0.012023 sec/sample 	Completed  1/10: [===                 ], Disagg rate:     0.011995 sec/sample 	Completed  1/10: [====                ], Disagg rate:     0.011972 sec/sample 	Completed  1/10: [=====               ], Disagg rate:     0.011946 sec/sample 	Completed  1/10: [======              ], Disagg rate:     0.011935 sec/sample 	Completed  1/10: [=======             ], Disagg rate:     0.011930 sec/sample 	Completed  1/10: [========            ], Disagg rate:     0.011948 sec/sample 	Completed  1/10: [=========           ], Disagg rate:     0.011950 sec/sample 	Completed  1/10: [==========          ], Disagg rate:     0.011959 sec/sample 	Completed  1/10: [===========         ], Disagg rate:     0.011958 sec/sample 	Completed  1/10: [============        ], Disagg rate:     0.011951 sec/sample 	Completed  1/10: [=============       ], Disagg rate:     0.011948 sec/sample 	Completed  1/10: [==============      ], Disagg rate:     0.011947 sec/sample 	Completed  1/10: [===============     ], Disagg rate:     0.011941 sec/sample 	Completed  1/10: [================    ], Disagg rate:     0.011951 sec/sample 	Completed  1/10: [=================   ], Disagg rate:     0.011949 sec/sample 	Completed  1/10: [==================  ], Disagg rate:     0.011941 sec/sample 	Completed  1/10: [=================== ], Disagg rate:     0.011946 sec/sample 	Completed  1/10: [====================], Disagg rate:     0.011943 sec/sample 	Completed  1/10: [=====================], Disagg rate:     0.011942 sec/sample 
+
+************************ VALIDATION ROUND: 2 ************************
+Building priors and testing datasets...
+Creating PMFs and states...
+	Priors data size is 472086
+	Creating PMFs for: BME... CDE... CWE... DWE... FGE... FRE... GRE... HPE... OFE... TVE... WOE... 
+Finding load states...
+	Max partitions per load = 8
+	Partition PMF: BME , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  414080 |t|
+		S1:     1:  200, peak=    2,   58006 |t|
+	Partition PMF: CDE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  463803 |t|
+		S1:     1:    5, peak=    4,    3208 |t|
+		S2:     6:  200, peak=   39,    5075 |t|
+	Partition PMF: CWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  462789 |t|
+		S1:     1:    3, peak=    1,    7816 |t|
+		S2:     4:  200, peak=    5,    1481 |t|
+	Partition PMF: DWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  461748 |t|
+		S1:     1:    2, peak=    1,    1898 |t|
+		S2:     3:    4, peak=    4,     127 |t|
+		S3:     5:  200, peak=    6,    8313 |t|
+	Partition PMF: FGE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  301021 |t|
+		S1:     1:    1, peak=    1,  169112 |t|
+		S2:     2:  200, peak=    3,    1953 |t|
+	Partition PMF: FRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,     615 |t|
+		S1:     1:    2, peak=    1,  468679 |t|
+		S2:     3:  200, peak=    4,    2792 |t|
+	Partition PMF: GRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  471801 |t|
+		S1:     1:  200, peak=    1,     285 |t|
+	Partition PMF: HPE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  426417 |t|
+		S1:     1:   16, peak=   15,   42878 |t|
+		S2:    17:  200, peak=   20,    2791 |t|
+	Partition PMF: OFE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  454829 |t|
+		S1:     1:  200, peak=    1,   17257 |t|
+	Partition PMF: TVE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  428534 |t|
+		S1:     1:  200, peak=    1,   43552 |t|
+	Partition PMF: WOE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  470315 |t|
+		S1:     1:    2, peak=    1,     860 |t|
+		S2:     3:   22, peak=   22,     274 |t|
+		S3:    23:   25, peak=   24,     239 |t|
+		S4:    26:  200, peak=   30,     398 |t|
+	Km = [2, 3, 3, 4, 3, 3, 2, 3, 2, 2, 5] , K = 77760 super-states
+	Ybounds = [[0, 1, 201], [0, 1, 6, 201], [0, 1, 4, 201], [0, 1, 3, 5, 201], [0, 1, 2, 201], [0, 1, 3, 201], [0, 1, 201], [0, 1, 17, 201], [0, 1, 201], [0, 1, 201], [0, 1, 3, 23, 26, 201]]
+	Ypeaks = [[0, 2], [0, 4, 39], [0, 1, 5], [0, 1, 4, 6], [0, 1, 3], [0, 1, 4], [0, 1], [0, 15, 20], [0, 1], [0, 1], [0, 1, 22, 24, 30]]
+Creating SS-HMM...
+	Number of super-states: 77760 (a sum of 32 states) for  11 loads.
+	Normalize matrices: P0[], A[][], B[][]
+	Sparsity Metrics:
+		A[][]: 100.0 % sparse ( size = 6046617600 , non-zero = 2582 , empty rows = 77273 )
+		B[][]: 99.5 % sparse ( size = 15629760 , non-zero = 78664 , empty rows = 77273 )
+	Space Optimization - Matrix Compression:
+		A[][]: Compress down to 100.0 % (size 333644 from 48372940800 Bytes)
+		B[][]: Compress down to 99.25 % (size 941156 from 125038080 Bytes)
+Testing Load Disagg...
+	Testing data size is 52454
+	Completed  2/10: [=                   ], Disagg rate:     0.012130 sec/sample 	Completed  2/10: [==                  ], Disagg rate:     0.012301 sec/sample 	Completed  2/10: [===                 ], Disagg rate:     0.012449 sec/sample 	Completed  2/10: [====                ], Disagg rate:     0.012583 sec/sample 	Completed  2/10: [=====               ], Disagg rate:     0.012715 sec/sample 	Completed  2/10: [======              ], Disagg rate:     0.012831 sec/sample 	Completed  2/10: [=======             ], Disagg rate:     0.012944 sec/sample 	Completed  2/10: [========            ], Disagg rate:     0.013052 sec/sample 	Completed  2/10: [=========           ], Disagg rate:     0.013153 sec/sample 	Completed  2/10: [==========          ], Disagg rate:     0.013241 sec/sample 	Completed  2/10: [===========         ], Disagg rate:     0.013333 sec/sample 	Completed  2/10: [============        ], Disagg rate:     0.013415 sec/sample 	Completed  2/10: [=============       ], Disagg rate:     0.013488 sec/sample 	Completed  2/10: [==============      ], Disagg rate:     0.013554 sec/sample 	Completed  2/10: [===============     ], Disagg rate:     0.013615 sec/sample 	Completed  2/10: [================    ], Disagg rate:     0.013676 sec/sample 	Completed  2/10: [=================   ], Disagg rate:     0.013735 sec/sample 	Completed  2/10: [==================  ], Disagg rate:     0.013792 sec/sample 	Completed  2/10: [=================== ], Disagg rate:     0.013842 sec/sample 	Completed  2/10: [====================], Disagg rate:     0.013891 sec/sample 	Completed  2/10: [=====================], Disagg rate:     0.013891 sec/sample 
+
+************************ VALIDATION ROUND: 3 ************************
+Building priors and testing datasets...
+Creating PMFs and states...
+	Priors data size is 472086
+	Creating PMFs for: BME... CDE... CWE... DWE... FGE... FRE... GRE... HPE... OFE... TVE... WOE... 
+Finding load states...
+	Max partitions per load = 8
+	Partition PMF: BME , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  415048 |t|
+		S1:     1:  200, peak=    2,   57038 |t|
+	Partition PMF: CDE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  463460 |t|
+		S1:     1:    5, peak=    4,    3341 |t|
+		S2:     6:  200, peak=   39,    5285 |t|
+	Partition PMF: CWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  462588 |t|
+		S1:     1:    3, peak=    1,    7998 |t|
+		S2:     4:  200, peak=    5,    1500 |t|
+	Partition PMF: DWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  461387 |t|
+		S1:     1:    2, peak=    1,    1969 |t|
+		S2:     3:    4, peak=    4,     154 |t|
+		S3:     5:  200, peak=    6,    8576 |t|
+	Partition PMF: FGE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  302791 |t|
+		S1:     1:    1, peak=    1,  167359 |t|
+		S2:     2:  200, peak=    3,    1936 |t|
+	Partition PMF: FRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,     298 |t|
+		S1:     1:    2, peak=    1,  469005 |t|
+		S2:     3:  200, peak=    4,    2783 |t|
+	Partition PMF: GRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  471772 |t|
+		S1:     1:  200, peak=    1,     314 |t|
+	Partition PMF: HPE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  425901 |t|
+		S1:     1:   16, peak=   15,   43404 |t|
+		S2:    17:  200, peak=   20,    2781 |t|
+	Partition PMF: OFE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  452428 |t|
+		S1:     1:  200, peak=    1,   19658 |t|
+	Partition PMF: TVE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  428177 |t|
+		S1:     1:  200, peak=    1,   43909 |t|
+	Partition PMF: WOE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  470441 |t|
+		S1:     1:    2, peak=    1,     779 |t|
+		S2:     3:   22, peak=   22,     246 |t|
+		S3:    23:   25, peak=   24,     224 |t|
+		S4:    26:  200, peak=   30,     396 |t|
+	Km = [2, 3, 3, 4, 3, 3, 2, 3, 2, 2, 5] , K = 77760 super-states
+	Ybounds = [[0, 1, 201], [0, 1, 6, 201], [0, 1, 4, 201], [0, 1, 3, 5, 201], [0, 1, 2, 201], [0, 1, 3, 201], [0, 1, 201], [0, 1, 17, 201], [0, 1, 201], [0, 1, 201], [0, 1, 3, 23, 26, 201]]
+	Ypeaks = [[0, 2], [0, 4, 39], [0, 1, 5], [0, 1, 4, 6], [0, 1, 3], [0, 1, 4], [0, 1], [0, 15, 20], [0, 1], [0, 1], [0, 1, 22, 24, 30]]
+Creating SS-HMM...
+	Number of super-states: 77760 (a sum of 32 states) for  11 loads.
+	Normalize matrices: P0[], A[][], B[][]
+	Sparsity Metrics:
+		A[][]: 100.0 % sparse ( size = 6046617600 , non-zero = 2587 , empty rows = 77278 )
+		B[][]: 99.5 % sparse ( size = 15629760 , non-zero = 78658 , empty rows = 77278 )
+	Space Optimization - Matrix Compression:
+		A[][]: Compress down to 100.0 % (size 333664 from 48372940800 Bytes)
+		B[][]: Compress down to 99.25 % (size 941108 from 125038080 Bytes)
+Testing Load Disagg...
+	Testing data size is 52454
+	Completed  3/10: [=                   ], Disagg rate:     0.013935 sec/sample 	Completed  3/10: [==                  ], Disagg rate:     0.013974 sec/sample 	Completed  3/10: [===                 ], Disagg rate:     0.014013 sec/sample 	Completed  3/10: [====                ], Disagg rate:     0.014053 sec/sample 	Completed  3/10: [=====               ], Disagg rate:     0.014091 sec/sample 	Completed  3/10: [======              ], Disagg rate:     0.014130 sec/sample 	Completed  3/10: [=======             ], Disagg rate:     0.014166 sec/sample 	Completed  3/10: [========            ], Disagg rate:     0.014205 sec/sample 	Completed  3/10: [=========           ], Disagg rate:     0.014242 sec/sample 	Completed  3/10: [==========          ], Disagg rate:     0.014273 sec/sample 	Completed  3/10: [===========         ], Disagg rate:     0.014300 sec/sample 	Completed  3/10: [============        ], Disagg rate:     0.014330 sec/sample 	Completed  3/10: [=============       ], Disagg rate:     0.014358 sec/sample 	Completed  3/10: [==============      ], Disagg rate:     0.014384 sec/sample 	Completed  3/10: [===============     ], Disagg rate:     0.014409 sec/sample 	Completed  3/10: [================    ], Disagg rate:     0.014432 sec/sample 	Completed  3/10: [=================   ], Disagg rate:     0.014456 sec/sample 	Completed  3/10: [==================  ], Disagg rate:     0.014482 sec/sample 	Completed  3/10: [=================== ], Disagg rate:     0.014503 sec/sample 	Completed  3/10: [====================], Disagg rate:     0.014524 sec/sample 	Completed  3/10: [=====================], Disagg rate:     0.014523 sec/sample 
+
+************************ VALIDATION ROUND: 4 ************************
+Building priors and testing datasets...
+Creating PMFs and states...
+	Priors data size is 472086
+	Creating PMFs for: BME... CDE... CWE... DWE... FGE... FRE... GRE... HPE... OFE... TVE... WOE... 
+Finding load states...
+	Max partitions per load = 8
+	Partition PMF: BME , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  411909 |t|
+		S1:     1:  200, peak=    2,   60177 |t|
+	Partition PMF: CDE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  463009 |t|
+		S1:     1:    5, peak=    4,    3524 |t|
+		S2:     6:  200, peak=   39,    5553 |t|
+	Partition PMF: CWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  462629 |t|
+		S1:     1:    3, peak=    1,    7937 |t|
+		S2:     4:  200, peak=    5,    1520 |t|
+	Partition PMF: DWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  461732 |t|
+		S1:     1:    2, peak=    1,    1856 |t|
+		S2:     3:    4, peak=    4,     152 |t|
+		S3:     5:  200, peak=    6,    8346 |t|
+	Partition PMF: FGE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  305165 |t|
+		S1:     1:    1, peak=    1,  165036 |t|
+		S2:     2:  200, peak=    3,    1885 |t|
+	Partition PMF: FRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,     608 |t|
+		S1:     1:    2, peak=    1,  469079 |t|
+		S2:     3:  200, peak=    4,    2399 |t|
+	Partition PMF: GRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  471837 |t|
+		S1:     1:  200, peak=    1,     249 |t|
+	Partition PMF: HPE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  426983 |t|
+		S1:     1:   16, peak=   15,   42700 |t|
+		S2:    17:  200, peak=   20,    2403 |t|
+	Partition PMF: OFE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  453705 |t|
+		S1:     1:  200, peak=    1,   18381 |t|
+	Partition PMF: TVE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  429499 |t|
+		S1:     1:  200, peak=    1,   42587 |t|
+	Partition PMF: WOE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  470473 |t|
+		S1:     1:    2, peak=    1,     742 |t|
+		S2:     3:   22, peak=   22,     245 |t|
+		S3:    23:   25, peak=   24,     230 |t|
+		S4:    26:  200, peak=   30,     396 |t|
+	Km = [2, 3, 3, 4, 3, 3, 2, 3, 2, 2, 5] , K = 77760 super-states
+	Ybounds = [[0, 1, 201], [0, 1, 6, 201], [0, 1, 4, 201], [0, 1, 3, 5, 201], [0, 1, 2, 201], [0, 1, 3, 201], [0, 1, 201], [0, 1, 17, 201], [0, 1, 201], [0, 1, 201], [0, 1, 3, 23, 26, 201]]
+	Ypeaks = [[0, 2], [0, 4, 39], [0, 1, 5], [0, 1, 4, 6], [0, 1, 3], [0, 1, 4], [0, 1], [0, 15, 20], [0, 1], [0, 1], [0, 1, 22, 24, 30]]
+Creating SS-HMM...
+	Number of super-states: 77760 (a sum of 32 states) for  11 loads.
+	Normalize matrices: P0[], A[][], B[][]
+	Sparsity Metrics:
+		A[][]: 100.0 % sparse ( size = 6046617600 , non-zero = 2590 , empty rows = 77278 )
+		B[][]: 99.5 % sparse ( size = 15629760 , non-zero = 78651 , empty rows = 77278 )
+	Space Optimization - Matrix Compression:
+		A[][]: Compress down to 100.0 % (size 333688 from 48372940800 Bytes)
+		B[][]: Compress down to 99.25 % (size 941052 from 125038080 Bytes)
+Testing Load Disagg...
+	Testing data size is 52454
+	Completed  4/10: [=                   ], Disagg rate:     0.014544 sec/sample 	Completed  4/10: [==                  ], Disagg rate:     0.014562 sec/sample 	Completed  4/10: [===                 ], Disagg rate:     0.014578 sec/sample 	Completed  4/10: [====                ], Disagg rate:     0.014596 sec/sample 	Completed  4/10: [=====               ], Disagg rate:     0.014614 sec/sample 	Completed  4/10: [======              ], Disagg rate:     0.014629 sec/sample 	Completed  4/10: [=======             ], Disagg rate:     0.014646 sec/sample 	Completed  4/10: [========            ], Disagg rate:     0.014662 sec/sample 	Completed  4/10: [=========           ], Disagg rate:     0.014677 sec/sample 	Completed  4/10: [==========          ], Disagg rate:     0.014697 sec/sample 	Completed  4/10: [===========         ], Disagg rate:     0.014711 sec/sample 	Completed  4/10: [============        ], Disagg rate:     0.014726 sec/sample 	Completed  4/10: [=============       ], Disagg rate:     0.014742 sec/sample 	Completed  4/10: [==============      ], Disagg rate:     0.014759 sec/sample 	Completed  4/10: [===============     ], Disagg rate:     0.014778 sec/sample 	Completed  4/10: [================    ], Disagg rate:     0.014794 sec/sample 	Completed  4/10: [=================   ], Disagg rate:     0.014813 sec/sample 	Completed  4/10: [==================  ], Disagg rate:     0.014828 sec/sample 	Completed  4/10: [=================== ], Disagg rate:     0.014837 sec/sample 	Completed  4/10: [====================], Disagg rate:     0.014848 sec/sample 	Completed  4/10: [=====================], Disagg rate:     0.014847 sec/sample 
+
+************************ VALIDATION ROUND: 5 ************************
+Building priors and testing datasets...
+Creating PMFs and states...
+	Priors data size is 472086
+	Creating PMFs for: BME... CDE... CWE... DWE... FGE... FRE... GRE... HPE... OFE... TVE... WOE... 
+Finding load states...
+	Max partitions per load = 8
+	Partition PMF: BME , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  409426 |t|
+		S1:     1:  200, peak=    2,   62660 |t|
+	Partition PMF: CDE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  463491 |t|
+		S1:     1:    5, peak=    4,    3365 |t|
+		S2:     6:  200, peak=   39,    5230 |t|
+	Partition PMF: CWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  462540 |t|
+		S1:     1:    3, peak=    1,    8029 |t|
+		S2:     4:  200, peak=    5,    1517 |t|
+	Partition PMF: DWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  461484 |t|
+		S1:     1:    2, peak=    1,    1933 |t|
+		S2:     3:    4, peak=    4,     153 |t|
+		S3:     5:  200, peak=    6,    8516 |t|
+	Partition PMF: FGE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  302780 |t|
+		S1:     1:    1, peak=    1,  167365 |t|
+		S2:     2:  200, peak=    3,    1941 |t|
+	Partition PMF: FRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,     612 |t|
+		S1:     1:    2, peak=    1,  468634 |t|
+		S2:     3:  200, peak=    4,    2840 |t|
+	Partition PMF: GRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  471776 |t|
+		S1:     1:  200, peak=    1,     310 |t|
+	Partition PMF: HPE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  424791 |t|
+		S1:     1:   16, peak=   15,   44457 |t|
+		S2:    17:  200, peak=   20,    2838 |t|
+	Partition PMF: OFE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  454420 |t|
+		S1:     1:  200, peak=    1,   17666 |t|
+	Partition PMF: TVE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  426748 |t|
+		S1:     1:  200, peak=    1,   45338 |t|
+	Partition PMF: WOE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  470443 |t|
+		S1:     1:    2, peak=    1,     780 |t|
+		S2:     3:   22, peak=   22,     254 |t|
+		S3:    23:   25, peak=   24,     225 |t|
+		S4:    26:  200, peak=   30,     384 |t|
+	Km = [2, 3, 3, 4, 3, 3, 2, 3, 2, 2, 5] , K = 77760 super-states
+	Ybounds = [[0, 1, 201], [0, 1, 6, 201], [0, 1, 4, 201], [0, 1, 3, 5, 201], [0, 1, 2, 201], [0, 1, 3, 201], [0, 1, 201], [0, 1, 17, 201], [0, 1, 201], [0, 1, 201], [0, 1, 3, 23, 26, 201]]
+	Ypeaks = [[0, 2], [0, 4, 39], [0, 1, 5], [0, 1, 4, 6], [0, 1, 3], [0, 1, 4], [0, 1], [0, 15, 20], [0, 1], [0, 1], [0, 1, 22, 24, 30]]
+Creating SS-HMM...
+	Number of super-states: 77760 (a sum of 32 states) for  11 loads.
+	Normalize matrices: P0[], A[][], B[][]
+	Sparsity Metrics:
+		A[][]: 100.0 % sparse ( size = 6046617600 , non-zero = 2625 , empty rows = 77276 )
+		B[][]: 99.5 % sparse ( size = 15629760 , non-zero = 78701 , empty rows = 77276 )
+	Space Optimization - Matrix Compression:
+		A[][]: Compress down to 100.0 % (size 333976 from 48372940800 Bytes)
+		B[][]: Compress down to 99.25 % (size 941452 from 125038080 Bytes)
+Testing Load Disagg...
+	Testing data size is 52454
+	Completed  5/10: [=                   ], Disagg rate:     0.014862 sec/sample 	Completed  5/10: [==                  ], Disagg rate:     0.014875 sec/sample 	Completed  5/10: [===                 ], Disagg rate:     0.014886 sec/sample 	Completed  5/10: [====                ], Disagg rate:     0.014896 sec/sample 	Completed  5/10: [=====               ], Disagg rate:     0.014907 sec/sample 	Completed  5/10: [======              ], Disagg rate:     0.014915 sec/sample 	Completed  5/10: [=======             ], Disagg rate:     0.014925 sec/sample 	Completed  5/10: [========            ], Disagg rate:     0.014934 sec/sample 	Completed  5/10: [=========           ], Disagg rate:     0.014942 sec/sample 	Completed  5/10: [==========          ], Disagg rate:     0.014951 sec/sample 	Completed  5/10: [===========         ], Disagg rate:     0.014958 sec/sample 	Completed  5/10: [============        ], Disagg rate:     0.014964 sec/sample 	Completed  5/10: [=============       ], Disagg rate:     0.014973 sec/sample 	Completed  5/10: [==============      ], Disagg rate:     0.014981 sec/sample 	Completed  5/10: [===============     ], Disagg rate:     0.014991 sec/sample 	Completed  5/10: [================    ], Disagg rate:     0.015001 sec/sample 	Completed  5/10: [=================   ], Disagg rate:     0.015008 sec/sample 	Completed  5/10: [==================  ], Disagg rate:     0.015014 sec/sample 	Completed  5/10: [=================== ], Disagg rate:     0.015020 sec/sample 	Completed  5/10: [====================], Disagg rate:     0.015027 sec/sample 	Completed  5/10: [=====================], Disagg rate:     0.015027 sec/sample 
+
+************************ VALIDATION ROUND: 6 ************************
+Building priors and testing datasets...
+Creating PMFs and states...
+	Priors data size is 472086
+	Creating PMFs for: BME... CDE... CWE... DWE... FGE... FRE... GRE... HPE... OFE... TVE... WOE... 
+Finding load states...
+	Max partitions per load = 8
+	Partition PMF: BME , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  410926 |t|
+		S1:     1:  200, peak=    2,   61160 |t|
+	Partition PMF: CDE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  463574 |t|
+		S1:     1:    5, peak=    4,    3316 |t|
+		S2:     6:  200, peak=   39,    5196 |t|
+	Partition PMF: CWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  462493 |t|
+		S1:     1:    3, peak=    1,    8074 |t|
+		S2:     4:  200, peak=    5,    1519 |t|
+	Partition PMF: DWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  461365 |t|
+		S1:     1:    2, peak=    1,    1956 |t|
+		S2:     3:    4, peak=    4,     154 |t|
+		S3:     5:  200, peak=    6,    8611 |t|
+	Partition PMF: FGE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  300456 |t|
+		S1:     1:    1, peak=    1,  169694 |t|
+		S2:     2:  200, peak=    3,    1936 |t|
+	Partition PMF: FRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,     381 |t|
+		S1:     1:    2, peak=    1,  468991 |t|
+		S2:     3:  200, peak=    4,    2714 |t|
+	Partition PMF: GRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  471792 |t|
+		S1:     1:  200, peak=    1,     294 |t|
+	Partition PMF: HPE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  430153 |t|
+		S1:     1:   16, peak=   15,   39222 |t|
+		S2:    17:  200, peak=   20,    2711 |t|
+	Partition PMF: OFE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  453878 |t|
+		S1:     1:  200, peak=    1,   18208 |t|
+	Partition PMF: TVE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  427609 |t|
+		S1:     1:  200, peak=    1,   44477 |t|
+	Partition PMF: WOE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  470299 |t|
+		S1:     1:    2, peak=    1,     854 |t|
+		S2:     3:   22, peak=   22,     277 |t|
+		S3:    23:   25, peak=   24,     249 |t|
+		S4:    26:  200, peak=   30,     407 |t|
+	Km = [2, 3, 3, 4, 3, 3, 2, 3, 2, 2, 5] , K = 77760 super-states
+	Ybounds = [[0, 1, 201], [0, 1, 6, 201], [0, 1, 4, 201], [0, 1, 3, 5, 201], [0, 1, 2, 201], [0, 1, 3, 201], [0, 1, 201], [0, 1, 17, 201], [0, 1, 201], [0, 1, 201], [0, 1, 3, 23, 26, 201]]
+	Ypeaks = [[0, 2], [0, 4, 39], [0, 1, 5], [0, 1, 4, 6], [0, 1, 3], [0, 1, 4], [0, 1], [0, 15, 20], [0, 1], [0, 1], [0, 1, 22, 24, 30]]
+Creating SS-HMM...
+	Number of super-states: 77760 (a sum of 32 states) for  11 loads.
+	Normalize matrices: P0[], A[][], B[][]
+	Sparsity Metrics:
+		A[][]: 100.0 % sparse ( size = 6046617600 , non-zero = 2639 , empty rows = 77264 )
+		B[][]: 99.5 % sparse ( size = 15629760 , non-zero = 78676 , empty rows = 77264 )
+	Space Optimization - Matrix Compression:
+		A[][]: Compress down to 100.0 % (size 334136 from 48372940800 Bytes)
+		B[][]: Compress down to 99.25 % (size 941252 from 125038080 Bytes)
+Testing Load Disagg...
+	Testing data size is 52454
+	Completed  6/10: [=                   ], Disagg rate:     0.015033 sec/sample 	Completed  6/10: [==                  ], Disagg rate:     0.015040 sec/sample 	Completed  6/10: [===                 ], Disagg rate:     0.015045 sec/sample 	Completed  6/10: [====                ], Disagg rate:     0.015052 sec/sample 	Completed  6/10: [=====               ], Disagg rate:     0.015059 sec/sample 	Completed  6/10: [======              ], Disagg rate:     0.015065 sec/sample 	Completed  6/10: [=======             ], Disagg rate:     0.015071 sec/sample 	Completed  6/10: [========            ], Disagg rate:     0.015078 sec/sample 	Completed  6/10: [=========           ], Disagg rate:     0.015085 sec/sample 	Completed  6/10: [==========          ], Disagg rate:     0.015091 sec/sample 	Completed  6/10: [===========         ], Disagg rate:     0.015096 sec/sample 	Completed  6/10: [============        ], Disagg rate:     0.015104 sec/sample 	Completed  6/10: [=============       ], Disagg rate:     0.015112 sec/sample 	Completed  6/10: [==============      ], Disagg rate:     0.015121 sec/sample 	Completed  6/10: [===============     ], Disagg rate:     0.015128 sec/sample 	Completed  6/10: [================    ], Disagg rate:     0.015134 sec/sample 	Completed  6/10: [=================   ], Disagg rate:     0.015141 sec/sample 	Completed  6/10: [==================  ], Disagg rate:     0.015146 sec/sample 	Completed  6/10: [=================== ], Disagg rate:     0.015152 sec/sample 	Completed  6/10: [====================], Disagg rate:     0.015155 sec/sample 	Completed  6/10: [=====================], Disagg rate:     0.015155 sec/sample 
+
+************************ VALIDATION ROUND: 7 ************************
+Building priors and testing datasets...
+Creating PMFs and states...
+	Priors data size is 472086
+	Creating PMFs for: BME... CDE... CWE... DWE... FGE... FRE... GRE... HPE... OFE... TVE... WOE... 
+Finding load states...
+	Max partitions per load = 8
+	Partition PMF: BME , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  411416 |t|
+		S1:     1:  200, peak=    2,   60670 |t|
+	Partition PMF: CDE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  463520 |t|
+		S1:     1:    5, peak=    4,    3345 |t|
+		S2:     6:  200, peak=   39,    5221 |t|
+	Partition PMF: CWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  462320 |t|
+		S1:     1:    3, peak=    1,    8224 |t|
+		S2:     4:  200, peak=    5,    1542 |t|
+	Partition PMF: DWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  461572 |t|
+		S1:     1:    1, peak=    1,    1934 |t|
+		S2:     2:    4, peak=    4,     154 |t|
+		S3:     5:  200, peak=    6,    8426 |t|
+	Partition PMF: FGE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  298815 |t|
+		S1:     1:    1, peak=    1,  171265 |t|
+		S2:     2:  200, peak=    3,    2006 |t|
+	Partition PMF: FRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,     607 |t|
+		S1:     1:    2, peak=    1,  469456 |t|
+		S2:     3:  200, peak=    4,    2023 |t|
+	Partition PMF: GRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  471798 |t|
+		S1:     1:  200, peak=    1,     288 |t|
+	Partition PMF: HPE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  436404 |t|
+		S1:     1:   16, peak=   15,   33654 |t|
+		S2:    17:  200, peak=   20,    2028 |t|
+	Partition PMF: OFE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  455407 |t|
+		S1:     1:  200, peak=    1,   16679 |t|
+	Partition PMF: TVE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  428199 |t|
+		S1:     1:  200, peak=    1,   43887 |t|
+	Partition PMF: WOE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  470361 |t|
+		S1:     1:    2, peak=    1,     825 |t|
+		S2:     3:   22, peak=   22,     273 |t|
+		S3:    23:   25, peak=   24,     236 |t|
+		S4:    26:  200, peak=   30,     391 |t|
+	Km = [2, 3, 3, 4, 3, 3, 2, 3, 2, 2, 5] , K = 77760 super-states
+	Ybounds = [[0, 1, 201], [0, 1, 6, 201], [0, 1, 4, 201], [0, 1, 2, 5, 201], [0, 1, 2, 201], [0, 1, 3, 201], [0, 1, 201], [0, 1, 17, 201], [0, 1, 201], [0, 1, 201], [0, 1, 3, 23, 26, 201]]
+	Ypeaks = [[0, 2], [0, 4, 39], [0, 1, 5], [0, 1, 4, 6], [0, 1, 3], [0, 1, 4], [0, 1], [0, 15, 20], [0, 1], [0, 1], [0, 1, 22, 24, 30]]
+Creating SS-HMM...
+	Number of super-states: 77760 (a sum of 32 states) for  11 loads.
+	Normalize matrices: P0[], A[][], B[][]
+	Sparsity Metrics:
+		A[][]: 100.0 % sparse ( size = 6046617600 , non-zero = 2552 , empty rows = 77276 )
+		B[][]: 99.5 % sparse ( size = 15629760 , non-zero = 78661 , empty rows = 77276 )
+	Space Optimization - Matrix Compression:
+		A[][]: Compress down to 100.0 % (size 333392 from 48372940800 Bytes)
+		B[][]: Compress down to 99.25 % (size 941132 from 125038080 Bytes)
+Testing Load Disagg...
+	Testing data size is 52454
+	Completed  7/10: [=                   ], Disagg rate:     0.015161 sec/sample 	Completed  7/10: [==                  ], Disagg rate:     0.015167 sec/sample 	Completed  7/10: [===                 ], Disagg rate:     0.015173 sec/sample 	Completed  7/10: [====                ], Disagg rate:     0.015180 sec/sample 	Completed  7/10: [=====               ], Disagg rate:     0.015185 sec/sample 	Completed  7/10: [======              ], Disagg rate:     0.015190 sec/sample 	Completed  7/10: [=======             ], Disagg rate:     0.015196 sec/sample 	Completed  7/10: [========            ], Disagg rate:     0.015201 sec/sample 	Completed  7/10: [=========           ], Disagg rate:     0.015207 sec/sample 	Completed  7/10: [==========          ], Disagg rate:     0.015211 sec/sample 	Completed  7/10: [===========         ], Disagg rate:     0.015217 sec/sample 	Completed  7/10: [============        ], Disagg rate:     0.015220 sec/sample 	Completed  7/10: [=============       ], Disagg rate:     0.015226 sec/sample 	Completed  7/10: [==============      ], Disagg rate:     0.015229 sec/sample 	Completed  7/10: [===============     ], Disagg rate:     0.015234 sec/sample 	Completed  7/10: [================    ], Disagg rate:     0.015239 sec/sample 	Completed  7/10: [=================   ], Disagg rate:     0.015243 sec/sample 	Completed  7/10: [==================  ], Disagg rate:     0.015247 sec/sample 	Completed  7/10: [=================== ], Disagg rate:     0.015251 sec/sample 	Completed  7/10: [====================], Disagg rate:     0.015254 sec/sample 	Completed  7/10: [=====================], Disagg rate:     0.015254 sec/sample 
+
+************************ VALIDATION ROUND: 8 ************************
+Building priors and testing datasets...
+Creating PMFs and states...
+	Priors data size is 472086
+	Creating PMFs for: BME... CDE... CWE... DWE... FGE... FRE... GRE... HPE... OFE... TVE... WOE... 
+Finding load states...
+	Max partitions per load = 8
+	Partition PMF: BME , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  411557 |t|
+		S1:     1:  200, peak=    2,   60529 |t|
+	Partition PMF: CDE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  463650 |t|
+		S1:     1:    5, peak=    4,    3324 |t|
+		S2:     6:  200, peak=   39,    5112 |t|
+	Partition PMF: CWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  462681 |t|
+		S1:     1:    3, peak=    1,    7909 |t|
+		S2:     4:  200, peak=    5,    1496 |t|
+	Partition PMF: DWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  461798 |t|
+		S1:     1:    1, peak=    1,    1873 |t|
+		S2:     2:    4, peak=    4,     156 |t|
+		S3:     5:  200, peak=    6,    8259 |t|
+	Partition PMF: FGE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  299093 |t|
+		S1:     1:    1, peak=    1,  170986 |t|
+		S2:     2:  200, peak=    3,    2007 |t|
+	Partition PMF: FRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,     603 |t|
+		S1:     1:    2, peak=    1,  468944 |t|
+		S2:     3:  200, peak=    4,    2539 |t|
+	Partition PMF: GRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  471807 |t|
+		S1:     1:  200, peak=    1,     279 |t|
+	Partition PMF: HPE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  428023 |t|
+		S1:     1:   16, peak=   15,   41523 |t|
+		S2:    17:  200, peak=   20,    2540 |t|
+	Partition PMF: OFE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  451446 |t|
+		S1:     1:  200, peak=    1,   20640 |t|
+	Partition PMF: TVE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  427885 |t|
+		S1:     1:  200, peak=    1,   44201 |t|
+	Partition PMF: WOE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  470530 |t|
+		S1:     1:    3, peak=    1,     708 |t|
+		S2:     4:   22, peak=   22,     200 |t|
+		S3:    23:   25, peak=   24,     260 |t|
+		S4:    26:  200, peak=   30,     388 |t|
+	Km = [2, 3, 3, 4, 3, 3, 2, 3, 2, 2, 5] , K = 77760 super-states
+	Ybounds = [[0, 1, 201], [0, 1, 6, 201], [0, 1, 4, 201], [0, 1, 2, 5, 201], [0, 1, 2, 201], [0, 1, 3, 201], [0, 1, 201], [0, 1, 17, 201], [0, 1, 201], [0, 1, 201], [0, 1, 4, 23, 26, 201]]
+	Ypeaks = [[0, 2], [0, 4, 39], [0, 1, 5], [0, 1, 4, 6], [0, 1, 3], [0, 1, 4], [0, 1], [0, 15, 20], [0, 1], [0, 1], [0, 1, 22, 24, 30]]
+Creating SS-HMM...
+	Number of super-states: 77760 (a sum of 32 states) for  11 loads.
+	Normalize matrices: P0[], A[][], B[][]
+	Sparsity Metrics:
+		A[][]: 100.0 % sparse ( size = 6046617600 , non-zero = 2599 , empty rows = 77266 )
+		B[][]: 99.5 % sparse ( size = 15629760 , non-zero = 78677 , empty rows = 77266 )
+	Space Optimization - Matrix Compression:
+		A[][]: Compress down to 100.0 % (size 333808 from 48372940800 Bytes)
+		B[][]: Compress down to 99.25 % (size 941260 from 125038080 Bytes)
+Testing Load Disagg...
+	Testing data size is 52454
+	Completed  8/10: [=                   ], Disagg rate:     0.015258 sec/sample 	Completed  8/10: [==                  ], Disagg rate:     0.015261 sec/sample 	Completed  8/10: [===                 ], Disagg rate:     0.015263 sec/sample 	Completed  8/10: [====                ], Disagg rate:     0.015266 sec/sample 	Completed  8/10: [=====               ], Disagg rate:     0.015270 sec/sample 	Completed  8/10: [======              ], Disagg rate:     0.015273 sec/sample 	Completed  8/10: [=======             ], Disagg rate:     0.015277 sec/sample 	Completed  8/10: [========            ], Disagg rate:     0.015280 sec/sample 	Completed  8/10: [=========           ], Disagg rate:     0.015284 sec/sample 	Completed  8/10: [==========          ], Disagg rate:     0.015288 sec/sample 	Completed  8/10: [===========         ], Disagg rate:     0.015291 sec/sample 	Completed  8/10: [============        ], Disagg rate:     0.015293 sec/sample 	Completed  8/10: [=============       ], Disagg rate:     0.015295 sec/sample 	Completed  8/10: [==============      ], Disagg rate:     0.015298 sec/sample 	Completed  8/10: [===============     ], Disagg rate:     0.015301 sec/sample 	Completed  8/10: [================    ], Disagg rate:     0.015306 sec/sample 	Completed  8/10: [=================   ], Disagg rate:     0.015308 sec/sample 	Completed  8/10: [==================  ], Disagg rate:     0.015311 sec/sample 	Completed  8/10: [=================== ], Disagg rate:     0.015314 sec/sample 	Completed  8/10: [====================], Disagg rate:     0.015316 sec/sample 	Completed  8/10: [=====================], Disagg rate:     0.015316 sec/sample 
+
+************************ VALIDATION ROUND: 9 ************************
+Building priors and testing datasets...
+Creating PMFs and states...
+	Priors data size is 472086
+	Creating PMFs for: BME... CDE... CWE... DWE... FGE... FRE... GRE... HPE... OFE... TVE... WOE... 
+Finding load states...
+	Max partitions per load = 8
+	Partition PMF: BME , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  415060 |t|
+		S1:     1:  200, peak=    2,   57026 |t|
+	Partition PMF: CDE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  463589 |t|
+		S1:     1:    5, peak=    4,    3290 |t|
+		S2:     6:  200, peak=   39,    5207 |t|
+	Partition PMF: CWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  462428 |t|
+		S1:     1:    3, peak=    1,    8129 |t|
+		S2:     4:  200, peak=    5,    1529 |t|
+	Partition PMF: DWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  461865 |t|
+		S1:     1:    2, peak=    1,    1893 |t|
+		S2:     3:    4, peak=    4,     154 |t|
+		S3:     5:  200, peak=    6,    8174 |t|
+	Partition PMF: FGE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  299171 |t|
+		S1:     1:    1, peak=    1,  170932 |t|
+		S2:     2:  200, peak=    3,    1983 |t|
+	Partition PMF: FRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,     612 |t|
+		S1:     1:    2, peak=    1,  469182 |t|
+		S2:     3:  200, peak=    4,    2292 |t|
+	Partition PMF: GRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  471805 |t|
+		S1:     1:  200, peak=    1,     281 |t|
+	Partition PMF: HPE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  432394 |t|
+		S1:     1:   16, peak=   15,   37395 |t|
+		S2:    17:  200, peak=   20,    2297 |t|
+	Partition PMF: OFE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  451049 |t|
+		S1:     1:  200, peak=    1,   21037 |t|
+	Partition PMF: TVE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  430339 |t|
+		S1:     1:  200, peak=    1,   41747 |t|
+	Partition PMF: WOE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  470377 |t|
+		S1:     1:    2, peak=    1,     808 |t|
+		S2:     3:   22, peak=   22,     252 |t|
+		S3:    23:   25, peak=   24,     248 |t|
+		S4:    26:  200, peak=   30,     401 |t|
+	Km = [2, 3, 3, 4, 3, 3, 2, 3, 2, 2, 5] , K = 77760 super-states
+	Ybounds = [[0, 1, 201], [0, 1, 6, 201], [0, 1, 4, 201], [0, 1, 3, 5, 201], [0, 1, 2, 201], [0, 1, 3, 201], [0, 1, 201], [0, 1, 17, 201], [0, 1, 201], [0, 1, 201], [0, 1, 3, 23, 26, 201]]
+	Ypeaks = [[0, 2], [0, 4, 39], [0, 1, 5], [0, 1, 4, 6], [0, 1, 3], [0, 1, 4], [0, 1], [0, 15, 20], [0, 1], [0, 1], [0, 1, 22, 24, 30]]
+Creating SS-HMM...
+	Number of super-states: 77760 (a sum of 32 states) for  11 loads.
+	Normalize matrices: P0[], A[][], B[][]
+	Sparsity Metrics:
+		A[][]: 100.0 % sparse ( size = 6046617600 , non-zero = 2612 , empty rows = 77265 )
+		B[][]: 99.5 % sparse ( size = 15629760 , non-zero = 78665 , empty rows = 77265 )
+	Space Optimization - Matrix Compression:
+		A[][]: Compress down to 100.0 % (size 333916 from 48372940800 Bytes)
+		B[][]: Compress down to 99.25 % (size 941164 from 125038080 Bytes)
+Testing Load Disagg...
+	Testing data size is 52454
+	Completed  9/10: [=                   ], Disagg rate:     0.015321 sec/sample 	Completed  9/10: [==                  ], Disagg rate:     0.015325 sec/sample 	Completed  9/10: [===                 ], Disagg rate:     0.015329 sec/sample 	Completed  9/10: [====                ], Disagg rate:     0.015332 sec/sample 	Completed  9/10: [=====               ], Disagg rate:     0.015335 sec/sample 	Completed  9/10: [======              ], Disagg rate:     0.015338 sec/sample 	Completed  9/10: [=======             ], Disagg rate:     0.015340 sec/sample 	Completed  9/10: [========            ], Disagg rate:     0.015344 sec/sample 	Completed  9/10: [=========           ], Disagg rate:     0.015347 sec/sample 	Completed  9/10: [==========          ], Disagg rate:     0.015350 sec/sample 	Completed  9/10: [===========         ], Disagg rate:     0.015354 sec/sample 	Completed  9/10: [============        ], Disagg rate:     0.015356 sec/sample 	Completed  9/10: [=============       ], Disagg rate:     0.015359 sec/sample 	Completed  9/10: [==============      ], Disagg rate:     0.015361 sec/sample 	Completed  9/10: [===============     ], Disagg rate:     0.015363 sec/sample 	Completed  9/10: [================    ], Disagg rate:     0.015367 sec/sample 	Completed  9/10: [=================   ], Disagg rate:     0.015370 sec/sample 	Completed  9/10: [==================  ], Disagg rate:     0.015372 sec/sample 	Completed  9/10: [=================== ], Disagg rate:     0.015375 sec/sample 	Completed  9/10: [====================], Disagg rate:     0.015379 sec/sample 	Completed  9/10: [=====================], Disagg rate:     0.015379 sec/sample 
+
+************************ VALIDATION ROUND: 10 ************************
+Building priors and testing datasets...
+Creating PMFs and states...
+	Priors data size is 472086
+	Creating PMFs for: BME... CDE... CWE... DWE... FGE... FRE... GRE... HPE... OFE... TVE... WOE... 
+Finding load states...
+	Max partitions per load = 8
+	Partition PMF: BME , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  417809 |t|
+		S1:     1:  200, peak=    2,   54277 |t|
+	Partition PMF: CDE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  463957 |t|
+		S1:     1:    5, peak=    4,    3150 |t|
+		S2:     6:  200, peak=   39,    4979 |t|
+	Partition PMF: CWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  462852 |t|
+		S1:     1:    3, peak=    1,    7759 |t|
+		S2:     4:  200, peak=    5,    1475 |t|
+	Partition PMF: DWE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  461956 |t|
+		S1:     1:    2, peak=    1,    1857 |t|
+		S2:     3:    4, peak=    4,     153 |t|
+		S3:     5:  200, peak=    6,    8120 |t|
+	Partition PMF: FGE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  300266 |t|
+		S1:     1:    1, peak=    1,  169848 |t|
+		S2:     2:  200, peak=    3,    1972 |t|
+	Partition PMF: FRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,     616 |t|
+		S1:     1:    2, peak=    1,  469044 |t|
+		S2:     3:  200, peak=    4,    2426 |t|
+	Partition PMF: GRE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  471819 |t|
+		S1:     1:  200, peak=    1,     267 |t|
+	Partition PMF: HPE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  430682 |t|
+		S1:     1:   16, peak=   15,   38998 |t|
+		S2:    17:  200, peak=   20,    2406 |t|
+	Partition PMF: OFE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  451082 |t|
+		S1:     1:  200, peak=    1,   21004 |t|
+	Partition PMF: TVE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  430114 |t|
+		S1:     1:  200, peak=    1,   41972 |t|
+	Partition PMF: WOE , epsilon = 0.00021
+		S0:     0:    0, peak=    0,  470350 |t|
+		S1:     1:    2, peak=    1,     835 |t|
+		S2:     3:   22, peak=   22,     258 |t|
+		S3:    23:   25, peak=   24,     239 |t|
+		S4:    26:  200, peak=   30,     404 |t|
+	Km = [2, 3, 3, 4, 3, 3, 2, 3, 2, 2, 5] , K = 77760 super-states
+	Ybounds = [[0, 1, 201], [0, 1, 6, 201], [0, 1, 4, 201], [0, 1, 3, 5, 201], [0, 1, 2, 201], [0, 1, 3, 201], [0, 1, 201], [0, 1, 17, 201], [0, 1, 201], [0, 1, 201], [0, 1, 3, 23, 26, 201]]
+	Ypeaks = [[0, 2], [0, 4, 39], [0, 1, 5], [0, 1, 4, 6], [0, 1, 3], [0, 1, 4], [0, 1], [0, 15, 20], [0, 1], [0, 1], [0, 1, 22, 24, 30]]
+Creating SS-HMM...
+	Number of super-states: 77760 (a sum of 32 states) for  11 loads.
+	Normalize matrices: P0[], A[][], B[][]
+	Sparsity Metrics:
+		A[][]: 100.0 % sparse ( size = 6046617600 , non-zero = 2551 , empty rows = 77275 )
+		B[][]: 99.5 % sparse ( size = 15629760 , non-zero = 78652 , empty rows = 77275 )
+	Space Optimization - Matrix Compression:
+		A[][]: Compress down to 100.0 % (size 333388 from 48372940800 Bytes)
+		B[][]: Compress down to 99.25 % (size 941060 from 125038080 Bytes)
+Testing Load Disagg...
+	Testing data size is 52454
+	Completed 10/10: [=                   ], Disagg rate:     0.015382 sec/sample 	Completed 10/10: [==                  ], Disagg rate:     0.015386 sec/sample 	Completed 10/10: [===                 ], Disagg rate:     0.015388 sec/sample 	Completed 10/10: [====                ], Disagg rate:     0.015391 sec/sample 	Completed 10/10: [=====               ], Disagg rate:     0.015395 sec/sample 	Completed 10/10: [======              ], Disagg rate:     0.015397 sec/sample 	Completed 10/10: [=======             ], Disagg rate:     0.015400 sec/sample 	Completed 10/10: [========            ], Disagg rate:     0.015403 sec/sample 	Completed 10/10: [=========           ], Disagg rate:     0.015405 sec/sample 	Completed 10/10: [==========          ], Disagg rate:     0.015408 sec/sample 	Completed 10/10: [===========         ], Disagg rate:     0.015410 sec/sample 	Completed 10/10: [============        ], Disagg rate:     0.015412 sec/sample 	Completed 10/10: [=============       ], Disagg rate:     0.015413 sec/sample 	Completed 10/10: [==============      ], Disagg rate:     0.015416 sec/sample 	Completed 10/10: [===============     ], Disagg rate:     0.015418 sec/sample 	Completed 10/10: [================    ], Disagg rate:     0.015421 sec/sample 	Completed 10/10: [=================   ], Disagg rate:     0.015425 sec/sample 	Completed 10/10: [==================  ], Disagg rate:     0.015427 sec/sample 	Completed 10/10: [=================== ], Disagg rate:     0.015430 sec/sample 	Completed 10/10: [====================], Disagg rate:     0.015433 sec/sample 	Completed 10/10: [=====================], Disagg rate:     0.015433 sec/sample 
+
+	Computational Optimization: 100.0 % saved,  35.12 Million calculations (would have been 3032873.42 Billion)
+	Unexpected events = 124 , Adapted events = 0 , (errors = 0 )
+	Disagg time: 0.0154326143 sec/sample, Train Time: 2.47  min, Test Time: 13.9 min, % Noise: 0.0
+
+
+Classification & Esitmation Accuracies:
+
+	Accuracy     =  97.28% (15718 incorrect tests)
+	Precision    =  90.46%
+	Recall       =  92.89%
+	F-Score      =  91.66%
+
+	M Precision  =  86.16%
+	M Recall     =  88.47%
+	M F-Score    =  87.30%
+
+	FS Precision =  90.38%
+	FS Recall    =  92.81%
+	FS F-Score   =  91.58%
+
+	NDE          =   1.18%
+	RMSE         =   4.93
+	Esitmation   =  91.87% (33011 A difference)
+
+	|----------|----------|---------|---------|---------|-------------------------------|------------|-------------------|
+	|          |          |         |         |         | FINITE-STATE MODIFICATIONS:   |            | PRECENT OF TOTAL: |
+	| LOAD ID  | ACCURACY | NDE     | RMSE    | F-SCORE | PRECISION |  RECALL | F-SCORE | ESITMATION |     EST |   TRUTH |
+	|----------|----------|---------|---------|---------|-----------|---------|---------|------------|---------|---------|
+	| BME      |   96.34% |   6.86% |    0.41 |  85.34% |    85.51% |  85.17% |  85.34% |     83.06% |   6.51% |   6.91% |
+	| CDE      |   99.35% |   5.79% |    0.57 |  79.05% |    93.75% |  68.31% |  79.03% |     96.17% |  11.36% |  11.91% |
+	| CWE      |   97.88% |  79.60% |    0.40 |  12.05% |    35.68% |   6.96% |  11.65% |     46.89% |   0.23% |   1.14% |
+	| DWE      |   98.80% |  22.68% |    0.55 |  73.29% |    71.66% |  74.20% |  72.91% |     76.06% |   3.58% |   2.88% |
+	| FGE      |   88.23% |  12.75% |    0.45 |  84.95% |    79.11% |  91.58% |  84.89% |     82.57% |  11.02% |   9.66% |
+	| FRE      |   99.90% |   2.43% |    0.21 |  99.95% |    99.86% |  99.90% |  99.88% |     98.40% |  26.52% |  26.86% |
+	| GRE      |   99.93% |  92.14% |    0.11 |   0.00% |     0.00% |   0.00% |   0.00% |     46.17% |   0.00% |   0.05% |
+	| HPE      |   99.70% |   0.50% |    0.92 |  98.32% |    98.43% |  97.27% |  97.85% |     97.05% |  35.60% |  35.01% |
+	| OFE      |   94.68% |  24.32% |    0.25 |  26.09% |    29.55% |  23.35% |  26.09% |     34.53% |   0.83% |   1.08% |
+	| TVE      |   95.43% |   9.02% |    0.30 |  77.75% |    70.39% |  86.82% |  77.75% |     68.55% |   2.96% |   3.22% |
+	| WOE      |   99.79% |   6.03% |    0.75 |  68.05% |    75.38% |  61.60% |  67.80% |     75.67% |   1.37% |   1.28% |
+	|----------|----------|---------|---------|---------|-----------|---------|---------|------------|=========|=========|
+	                                                                                                 | 100.00% | 100.00% |
+	                                                                                                 |---------|---------|
+
+
+-------------------------------- CSV REPORTING --------------------------------
+
+
+Test ID, Run Date, Dataset, Units, Precision, Denoised?, Folds, Avg Load States, Super-States, Loads, N, T, A Size, A Non-Zero, A Sparsity, B Size, B Non-Zero, B Sparsity, Total Calc, Actual Calc, Train Time, Test Time, Disagg Time (sec/sample), Unexpected, Adapted, Adapted Errors, Mult-Switches, Noise
+ENEF, 2014-07-24 15:57:09.981517, ./Datasets/AMPds_1min_A.csv, A, 1.0, True, 10, 2.9, 77760, 11, 201, 52454, 6046617600, 2551, 1.0, 15629760, 78652, 0.995, 3032873415302400, 35115403, 2.4733, 13.9018, 0.015433, 124, 0, 0, 2629, 0.0
+
+Test ID, Load, Correct, Incorrect, TP, Inacc, APT, ITP, TN, FP, FN, Basic Acc, Precision, Recall, F-Score, M Precision, M Recall, M F-Score, FS Precision, FS Recall, FS F-Score, RMSE, NDE, Est Acc, Estimated, Actual, Diff, Est of Total, Actual of Total
+ENEF, *TL, 561248, 15718, 86398, 78.43679999999999, 82280, 4111, 474850, 9108, 6610, 0.9728, 0.9046, 0.9289, 0.9166, 0.8616, 0.8847, 0.873, 0.9038, 0.9281, 0.9158, 4.9293, 0.0118, 0.9187, 200711.9, 203114.3, 33011.8, 1.0, 1.0
+ENEF, BME, 50532, 1920, 5590, 0.0, 4710, 879, 44942, 947, 973, 0.9634, 0.8551, 0.8517, 0.8534, 0.7206, 0.7178, 0.7192, 0.8551, 0.8517, 0.8534, 0.4134, 0.0686, 0.8306, 13074.2, 14037.6, 4756.2, 0.0651, 0.0691
+ENEF, CDE, 52108, 343, 647, 0.1, 647, 0, 51461, 43, 300, 0.9935, 0.9377, 0.6832, 0.7905, 0.9377, 0.6832, 0.7905, 0.9375, 0.6831, 0.7903, 0.575, 0.0579, 0.9617, 22791.4, 24192.7, 1850.9, 0.1136, 0.1191
+ENEF, CWE, 51341, 1110, 76, 2.5, 19, 57, 51265, 130, 980, 0.9788, 0.3689, 0.072, 0.1205, 0.0922, 0.018, 0.0301, 0.3568, 0.0696, 0.1165, 0.4041, 0.796, 0.4689, 471.2, 2309.9, 2453.7, 0.0023, 0.0114
+ENEF, DWE, 51822, 629, 863, 4.5167, 845, 17, 50959, 335, 294, 0.988, 0.7204, 0.7459, 0.7329, 0.7059, 0.731, 0.7182, 0.7166, 0.742, 0.7291, 0.5459, 0.2268, 0.7606, 7185.7, 5857.1, 2804.6, 0.0358, 0.0288
+ENEF, FGE, 46276, 6175, 17429, 12.9667, 17388, 41, 28847, 4587, 1588, 0.8823, 0.7917, 0.9165, 0.8495, 0.7898, 0.9143, 0.8475, 0.7911, 0.9158, 0.8489, 0.448, 0.1275, 0.8257, 22126.5, 19623.6, 6840.1, 0.1102, 0.0966
+ENEF, FRE, 52401, 51, 52376, 35.6667, 50893, 1482, 25, 36, 15, 0.999, 0.9993, 0.9997, 0.9995, 0.971, 0.9714, 0.9712, 0.9986, 0.999, 0.9988, 0.2127, 0.0243, 0.984, 53225.9, 54550.7, 1744.4, 0.2652, 0.2686
+ENEF, GRE, 52413, 38, 0, 0.0, 0, 0, 52413, 7, 31, 0.9993, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1102, 0.9214, 0.4617, 7.9, 100.5, 108.2, 0.0, 0.0005
+ENEF, HPE, 52294, 158, 4622, 22.2667, 4395, 226, 47672, 51, 107, 0.997, 0.9891, 0.9774, 0.9832, 0.9407, 0.9296, 0.9351, 0.9843, 0.9727, 0.9785, 0.9178, 0.005, 0.9705, 71455.5, 71100.4, 4192.5, 0.356, 0.3501
+ENEF, OFE, 49663, 2788, 492, 0.0, 487, 4, 49171, 1173, 1615, 0.9468, 0.2955, 0.2335, 0.2609, 0.2927, 0.2312, 0.2583, 0.2955, 0.2335, 0.2609, 0.2501, 0.2432, 0.3453, 1665.8, 2201.2, 2882.2, 0.0083, 0.0108
+ENEF, TVE, 50054, 2398, 4188, 0.0, 2782, 1405, 45866, 1762, 636, 0.9543, 0.7039, 0.8682, 0.7775, 0.4676, 0.5768, 0.5165, 0.7039, 0.8682, 0.7775, 0.3018, 0.0902, 0.6855, 5950.1, 6539.7, 4113.6, 0.0296, 0.0322
+ENEF, WOE, 52344, 108, 115, 0.42, 114, 0, 52229, 37, 71, 0.9979, 0.7566, 0.6183, 0.6805, 0.755, 0.6162, 0.6786, 0.7538, 0.616, 0.678, 0.7503, 0.0603, 0.7567, 2757.7, 2600.9, 1265.4, 0.0137, 0.0128
+
+-------------------------------- ------------- --------------------------------
+
+
+DONE!!!
+
