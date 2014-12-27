@@ -1,5 +1,5 @@
 # NILM Performance Evaluation
-*Copyright *(C)* 2014 Stephen Makonin*.
+*Copyright* (C) *2014 Stephen Makonin*.
 
 NILM performance evaluation functions use in the Springer Energy Efficiency journal paper ([http://dx.doi.org/10.1007/s12053-014-9306-2](DOI 10.1007/s12053-014-9306-2)). The paper can be downloaded from Springer or my website: [http://makonin.com](makonin.com)
 
