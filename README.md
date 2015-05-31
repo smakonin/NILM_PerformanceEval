@@ -1,7 +1,7 @@
 # NILM Performance Evaluation
 *Copyright* (C) *2014 Stephen Makonin*.
 
-NILM performance evaluation functions use in the Springer Energy Efficiency journal paper ([http://dx.doi.org/10.1007/s12053-014-9306-2](DOI 10.1007/s12053-014-9306-2)). The paper can be downloaded from Springer or my website: [http://makonin.com](makonin.com)
+NILM performance evaluation functions use in the Springer Energy Efficiency journal paper ([DOI 10.1007/s12053-014-9306-2](http://dx.doi.org/10.1007/s12053-014-9306-2)). The paper can be downloaded from Springer or my website: [makonin.com](http://makonin.com)
 
 **Library_Accuracy.py** is the python code that calculated the accuracy measure for the paper.
 
